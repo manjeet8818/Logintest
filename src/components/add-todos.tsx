@@ -18,7 +18,7 @@ const AddTodos = () => {
 
       if (resData?.success) {
         (e.target as HTMLFormElement).reset();
-        mutate("/todos");
+        mutate("/todo");
       }
     } catch (error) {
       console.log("error");
