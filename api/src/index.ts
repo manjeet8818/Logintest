@@ -113,10 +113,7 @@ app.get("/", (c) => c.text("Hello Hono!"));
 // Explicit CORS Headers Middleware
 app.use("*", async (c, next) => {
   await next();
-  c.res.headers.append(
-    "Access-Control-Allow-Origin",
-    "https://logintest-1br.pages.dev"
-  );
+  c.res.headers.append("Access-Control-Allow-Origin", "*");
   c.res.headers.append(
     "Access-Control-Allow-Methods",
     "POST, GET, OPTIONS, DELETE, PATCH"
