@@ -20,7 +20,7 @@ const FetchTodos = () => {
   // ------------------------------------------------------------
   const fetchTodos = async () => {
     try {
-      const res = await fetch("https://my-app.manjeet88.workers.dev/todos/");
+      const res = await fetch("https://my-app.manjeet88.workers.dev/todos");
       const resData = await res.json();
       console.log("Fetched Data:", resData); // Add this line
       return resData.data;
