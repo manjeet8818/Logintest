@@ -177,10 +177,10 @@ interface Todos {
 }
 
 const fetchTodos = async () => {
-  const res = await fetch("https://my-app.manjeet88.workers.dev/todos", {
-    //const res = await fetch("https://my-app.manjeet88.workers.dev/todo/", {
+  //  const res = await fetch("https://my-app.manjeet88.workers.dev/todos", {
+  //const res = await fetch("https://my-app.manjeet88.workers.dev/todo/", {
 
-    // const res = await fetch("/*", {
+  const res = await fetch("*", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
