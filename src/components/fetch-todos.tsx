@@ -8,8 +8,10 @@ interface Todos {
 
 const FetchTodos = () => {
   const fetchTodos = async () => {
+    // This works
     const res = await fetch("http://127.0.0.1:8787/todos");
-    // const res = await fetch("https://my-app.manjeet88.workers.dev/todos/");
+
+    // const res = await fetch("https://my-app.manjeet88.workers.dev/");
 
     const resData = await res.json();
     return resData.data;

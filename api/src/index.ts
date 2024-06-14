@@ -16,9 +16,10 @@ app.get("/", (c) => c.text("Hello Hono!"));
 app.use(
   "/*",
   cors({
-    // origin: ["https://my-app.manjeet88.workers.dev"],
-    // origin: ["https://logintest-1br.pages.dev"],
-    origin: "http://localhost:5173",
+    // This works
+    // origin: "http://localhost:5173",
+
+    origin: "*",
 
     allowMethods: ["POST", "GET", "OPTIONS", "DELETE", "PATCH"],
   })
