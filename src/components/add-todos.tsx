@@ -8,7 +8,8 @@ const AddTodos = () => {
 
     try {
       //const res = await fetch("https://my-app.manjeet88.workers.dev/todos", {
-      const res = await fetch("http://127.0.0.1:8787/todos", {
+      // const res = await fetch("http://127.0.0.1:8787/todos", {
+      const res = await fetch("*/todos", {
         method: "post",
         body: JSON.stringify({ todo: formData.get("todo") }),
       });
