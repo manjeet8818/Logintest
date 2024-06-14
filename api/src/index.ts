@@ -25,6 +25,7 @@
 // app.route("/todos", todosRoutes);
 
 // export default app;
+
 import { Hono } from "hono";
 import todosRoutes from "./routes/todos";
 import { cors } from "hono/cors";
@@ -43,7 +44,7 @@ app.get("/", (c) => c.text("Hello Hono!"));
 app.use(
   "/*",
   cors({
-    origin: "/*",
+    origin: "*", // Allow all origins
     allowMethods: ["POST", "GET", "OPTIONS", "DELETE", "PATCH"],
     allowHeaders: ["Content-Type"],
   })
