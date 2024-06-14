@@ -101,14 +101,14 @@ const app = new Hono<{ Bindings: Bindings }>();
 app.get("/", (c) => c.text("Hello Hono!"));
 
 // Global CORS Middleware
-app.use(
-  "/*",
-  cors({
-    origin: "https://logintest-1br.pages.dev", // Allow specific origin
-    allowMethods: ["POST", "GET", "OPTIONS", "DELETE", "PATCH"],
-    allowHeaders: ["Content-Type"],
-  })
-);
+// app.use(
+//   "/*",
+//   cors({
+//     origin: "https://logintest-1br.pages.dev", // Allow specific origin
+//     allowMethods: ["POST", "GET", "OPTIONS", "DELETE", "PATCH"],
+//     allowHeaders: ["Content-Type"],
+//   })
+// );
 
 // Explicit CORS Headers Middleware
 app.use("*", async (c, next) => {
