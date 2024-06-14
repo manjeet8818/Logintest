@@ -25,7 +25,6 @@
 // app.route("/todos", todosRoutes);
 
 // export default app;
-
 import { Hono } from "hono";
 import todosRoutes from "./routes/todos";
 import { cors } from "hono/cors";
@@ -44,7 +43,7 @@ app.get("/", (c) => c.text("Hello Hono!"));
 app.use(
   "/*",
   cors({
-    origin: "*", // Allow all origins
+    origin: "https://logintest-1br.pages.dev", // Allow specific origin
     allowMethods: ["POST", "GET", "OPTIONS", "DELETE", "PATCH"],
     allowHeaders: ["Content-Type"],
   })
@@ -52,6 +51,7 @@ app.use(
 
 // Logging Middleware to debug headers
 app.use("*", async (c, next) => {
+  console.log("Request Headers:", c.req.headers);
   await next();
   console.log("Response Headers:", c.res.headers);
 });
