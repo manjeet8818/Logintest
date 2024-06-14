@@ -43,7 +43,7 @@ app.get("/", (c) => c.text("Hello Hono!"));
 app.use(
   "/*",
   cors({
-    origin: "https://logintest-1br.pages.dev",
+    origin: "*",
     allowMethods: ["POST", "GET", "OPTIONS", "DELETE", "PATCH"],
     allowHeaders: ["Content-Type"],
   })
