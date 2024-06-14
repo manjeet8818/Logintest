@@ -11,7 +11,7 @@ const AddTodos = () => {
       // const res = await fetch("http://127.0.0.1:8787/todos", {
       const res = await fetch("*/todos", {
         method: "post",
-        body: JSON.stringify({ todo: formData.get("todo") }),
+        body: JSON.stringify({ todo: formData.get("todos") }),
       });
 
       const resData = await res.json();
