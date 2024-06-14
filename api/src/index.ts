@@ -44,7 +44,7 @@ app.get("/", (c) => c.text("Hello Hono!"));
 
 // Set up CORS
 app.use(
-  "/*",
+  "/",
   cors({
     origin: "https://logintest-1br.pages.dev/",
     allowMethods: ["POST", "GET", "OPTIONS", "DELETE", "PATCH"],
