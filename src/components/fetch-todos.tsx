@@ -8,10 +8,10 @@ interface Todos {
 
 const FetchTodos = () => {
   const fetchTodos = async () => {
-    // This works
-    const res = await fetch("http://127.0.0.1:8787/todos");
+    // This is to get the data
+    // const res = await fetch("http://127.0.0.1:8787/todos");
 
-    // const res = await fetch("https://my-app.manjeet88.workers.dev/");
+    const res = await fetch("https://my-app.manjeet88.workers.dev/todos");
 
     const resData = await res.json();
     return resData.data;
@@ -26,9 +26,9 @@ const FetchTodos = () => {
   const handleComplete = async (todoId: number) => {
     try {
       const res = await fetch(
-        `http://127.0.0.1:8787/todos/${todoId}`,
+        //    `http://127.0.0.1:8787/todos/${todoId}`,
 
-        //    `https://my-app.manjeet88.workers.dev/todos/1${todoId}`, {
+        `https://my-app.manjeet88.workers.dev/todos/${todoId}`,
 
         {
           method: "PATCH",
@@ -44,9 +44,9 @@ const FetchTodos = () => {
   const handleRedo = async (todoId: number) => {
     try {
       const res = await fetch(
-        `http://127.0.0.1:8787/todos/${todoId}`,
+        //    `http://127.0.0.1:8787/todos/${todoId}`,
 
-        //`https://my-app.manjeet88.workers.dev/todos/${todoId}`,
+        `https://my-app.manjeet88.workers.dev/todos/${todoId}`,
         {
           method: "PATCH",
           body: JSON.stringify({ todoStatus: false }),
@@ -61,9 +61,9 @@ const FetchTodos = () => {
   const handleDelete = async (todoId: number) => {
     try {
       const res = await fetch(
-        `http://127.0.0.1:8787/todos/${todoId}`,
+        //    `http://127.0.0.1:8787/todos/${todoId}`,
 
-        //        `https://my-app.manjeet88.workers.dev/todos/${todoId}`,
+        `https://my-app.manjeet88.workers.dev/todos/${todoId}`,
         {
           method: "DELETE",
         }

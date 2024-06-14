@@ -7,9 +7,10 @@ const AddTodos = () => {
     const formData = new FormData(e.target as HTMLFormElement);
 
     try {
-      // This works
-      const res = await fetch("http://127.0.0.1:8787/todos", {
-        //  const res = await fetch("https://my-app.manjeet88.workers.dev/todos", {
+      // This is to send the data
+      // const res = await fetch("http://127.0.0.1:8787/todos", {
+      // This works to add data
+      const res = await fetch("https://my-app.manjeet88.workers.dev/todos", {
         method: "post",
         body: JSON.stringify({ todo: formData.get("todo") }),
       });
