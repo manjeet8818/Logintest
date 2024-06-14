@@ -203,16 +203,13 @@ const FetchTodos = () => {
 
   const handleComplete = async (todoId: number) => {
     try {
-      const res = await fetch(
-        `https://my-app.manjeet88.workers.dev/todos/${todoId}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ todoStatus: true }),
-        }
-      );
+      const res = await fetch(`*/${todoId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ todoStatus: true }),
+      });
 
       if (!res.ok) {
         throw new Error("Failed to update todo");
@@ -226,16 +223,13 @@ const FetchTodos = () => {
 
   const handleRedo = async (todoId: number) => {
     try {
-      const res = await fetch(
-        `https://my-app.manjeet88.workers.dev/todos/${todoId}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ todoStatus: false }),
-        }
-      );
+      const res = await fetch(`*/${todoId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ todoStatus: false }),
+      });
 
       if (!res.ok) {
         throw new Error("Failed to update todo");
@@ -249,15 +243,12 @@ const FetchTodos = () => {
 
   const handleDelete = async (todoId: number) => {
     try {
-      const res = await fetch(
-        `https://my-app.manjeet88.workers.dev/todos/${todoId}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const res = await fetch(`*/${todoId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
       if (!res.ok) {
         throw new Error("Failed to delete todo");
