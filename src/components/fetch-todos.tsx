@@ -25,7 +25,7 @@ const FetchTodos = () => {
   const handleComplete = async (todoId: number) => {
     try {
       const res = await fetch(
-        `https://my-app.manjeet88.workers.dev/todos/${todoId}`,
+        `https://my-app.manjeet88.workers.dev/todos/1${todoId}`,
         {
           method: "PATCH",
           body: JSON.stringify({ todoStatus: true }),
