@@ -7,18 +7,18 @@ const AddTodos = () => {
     const formData = new FormData(e.target as HTMLFormElement);
 
     try {
-      //const res = await fetch("https://my-app.manjeet88.workers.dev/todos", {
-      // const res = await fetch("http://127.0.0.1:8787/todos", {
-      const res = await fetch("*", {
+      const res = await fetch("https://my-app.manjeet88.workers.dev/todos", {
+        // const res = await fetch("http://127.0.0.1:8787/todos", {
+
         method: "post",
-        body: JSON.stringify({ todo: formData.get("todos") }),
+        body: JSON.stringify({ todo: formData.get("todo") }),
       });
 
       const resData = await res.json();
 
       if (resData?.success) {
         (e.target as HTMLFormElement).reset();
-        mutate("/todo");
+        mutate("/todos");
       }
     } catch (error) {
       console.log("error");
