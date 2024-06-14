@@ -1,5 +1,0 @@
-# CORS headers for all requests
-/*
-  Access-Control-Allow-Origin: https://logintest-1br.pages.dev
-  Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE, PATCH
-  Access-Control-Allow-Headers: Content-Type
