@@ -16,7 +16,7 @@ app.get("/", (c) => c.text("Hello Hono!"));
 app.use(
   "/*",
   cors({
-    origin: ["http://localhost:5173"],
+    origin: ["https://logintest-1br.pages.dev/"],
     allowMethods: ["POST", "GET", "OPTIONS", "DELETE", "PATCH"],
   })
 );
