@@ -43,7 +43,7 @@ app.get("/", (c) => c.text("Hello Hono!"));
 app.use(
   "/*",
   cors({
-    origin: "*",
+    origin: "/*",
     allowMethods: ["POST", "GET", "OPTIONS", "DELETE", "PATCH"],
     allowHeaders: ["Content-Type"],
   })
