@@ -8,7 +8,7 @@ interface Todos {
 
 const FetchTodos = () => {
   const fetchTodos = async () => {
-    const res = await fetch("https://my-app.manjeet88.workers.dev/todos");
+    const res = await fetch("https://my-app.manjeet88.workers.dev/todos/");
     // const res = await fetch("https://my-app.manjeet88.workers.dev/todos/");
 
     const resData = await res.json();
