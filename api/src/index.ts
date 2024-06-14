@@ -25,6 +25,12 @@
 // app.route("/todos", todosRoutes);
 
 // export default app;
+
+// ---------------------------------------------------------------
+// ---------------------------------------------------------------
+// ---------------------------------------------------------------
+// ---------------------------------------------------------------
+
 import { Hono } from "hono";
 import todosRoutes from "./routes/todos";
 import { cors } from "hono/cors";
@@ -49,10 +55,19 @@ app.use(
   })
 );
 
-// Logging Middleware to debug headers
+// Explicit CORS Headers Middleware
 app.use("*", async (c, next) => {
-  console.log("Request Headers:", c.req.headers);
   await next();
+  c.res.headers.append(
+    "Access-Control-Allow-Origin",
+    "https://logintest-1br.pages.dev"
+  );
+  c.res.headers.append(
+    "Access-Control-Allow-Methods",
+    "POST, GET, OPTIONS, DELETE, PATCH"
+  );
+  c.res.headers.append("Access-Control-Allow-Headers", "Content-Type");
+  console.log("Request Headers:", c.req.headers);
   console.log("Response Headers:", c.res.headers);
 });
 
