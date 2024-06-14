@@ -7,13 +7,31 @@ interface Todos {
 }
 
 const FetchTodos = () => {
-  const fetchTodos = async () => {
-    const res = await fetch("https://my-app.manjeet88.workers.dev/todos/");
-    // const res = await fetch("https://my-app.manjeet88.workers.dev/todos/");
+  // const fetchTodos = async () => {
+  //   const res = await fetch("https://my-app.manjeet88.workers.dev/todos/");
+  //   // const res = await fetch("https://my-app.manjeet88.workers.dev/todos/");
 
-    const resData = await res.json();
-    return resData.data;
+  //   const resData = await res.json();
+  //   return resData.data;
+  // };
+
+  // ------------------------------------------------------------
+  // ------------------------------------------------------------
+  // ------------------------------------------------------------
+  const fetchTodos = async () => {
+    try {
+      const res = await fetch("https://my-app.manjeet88.workers.dev/todos/");
+      const resData = await res.json();
+      console.log("Fetched Data:", resData); // Add this line
+      return resData.data;
+    } catch (error) {
+      console.error("Error fetching todos:", error);
+    }
   };
+
+  // ------------------------------------------------------------
+  // ------------------------------------------------------------
+  // ------------------------------------------------------------
 
   const { mutate } = useSWRConfig();
 
@@ -21,6 +39,24 @@ const FetchTodos = () => {
     "/todos",
     fetchTodos
   );
+
+  // const handleComplete = async (todoId: number) => {
+  //   try {
+  //     const res = await fetch(
+  //       `https://my-app.manjeet88.workers.dev/todos/${todoId}`,
+  //       {
+  //         method: "PATCH",
+  //         body: JSON.stringify({ todoStatus: true }),
+  //       }
+  //     );
+
+  //     const resData = await res.json();
+
+  //     mutate("/todos");
+  //   } catch (error) {
+  //     console.log("error while deleting");
+  //   }
+  // };
 
   const handleComplete = async (todoId: number) => {
     try {
@@ -31,14 +67,13 @@ const FetchTodos = () => {
           body: JSON.stringify({ todoStatus: true }),
         }
       );
-
-      const resData = await res.json();
-
+      await res.json();
       mutate("/todos");
     } catch (error) {
-      console.log("error while deleting");
+      console.log("Error while updating todo:", error);
     }
   };
+
   const handleRedo = async (todoId: number) => {
     try {
       const res = await fetch(
@@ -88,72 +123,103 @@ const FetchTodos = () => {
   }
   return (
     <div>
-      {error ? (
-        <div className="error-card">
-          <p>Error while fetching todos</p>
-        </div>
-      ) : null}
-      <div className="todos-list">
-        {!isLoading &&
-          !error &&
-          data?.map((todo) => (
-            <>
-              {!todo.is_completed && (
-                <div
-                  className={`todo-item ${
-                    todo.is_completed === 1 ? "complete" : ""
-                  }`}
-                  key={todo.id}
-                >
-                  <p>{todo.todo}</p>
-                  <div className="todo-actions">
-                    <div className="todo-action complete">
-                      <Check onClick={() => handleComplete(todo.id)} />
-                    </div>
-                    <div
-                      className="todo-action delete"
-                      onClick={() => handleDelete(todo.id)}
-                    >
-                      <Trash2 />
-                    </div>
-                  </div>
-                </div>
-              )}
-            </>
-          ))}
-      </div>
-
-      <div className="todos-list">
-        {hasCompletedTodos ? (
-          <h2 className="todos-heading">Completed Todos</h2>
+      {/* ------------------------------------------------- */}
+      <div>
+        {error ? (
+          <div className="error-card">
+            <p>Error while fetching todos</p>
+          </div>
         ) : null}
-
-        {!isLoading &&
-          data?.map((todo) => (
-            <>
-              {todo.is_completed ? (
-                <div
-                  className={`todo-item ${
-                    todo.is_completed === 1 ? "complete" : ""
-                  }`}
-                  key={todo.id}
-                >
-                  <p>{todo.todo}</p>
-                  <div className="todo-actions">
-                    <div className="todo-action complete">
-                      <RotateCcw onClick={() => handleRedo(todo.id)} />
-                    </div>
-                    <div
-                      className="todo-action delete"
-                      onClick={() => handleDelete(todo.id)}
-                    >
-                      <Trash2 />
+        <div className="todos-list">
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : (
+            data?.map((todo) => (
+              <div
+                key={todo.id}
+                className={`todo-item ${
+                  todo.is_completed === 1 ? "complete" : ""
+                }`}
+              >
+                <p>{todo.todo}</p>
+                <div className="todo-actions">
+                  <Check onClick={() => handleComplete(todo.id)} />
+                  <Trash2 onClick={() => handleDelete(todo.id)} />
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+      </div>
+      {/* ------------------------------------------------- */}
+      <div>
+        {error ? (
+          <div className="error-card">
+            <p>Error while fetching todos</p>
+          </div>
+        ) : null}
+        <div className="todos-list">
+          {!isLoading &&
+            !error &&
+            data?.map((todo) => (
+              <>
+                {!todo.is_completed && (
+                  <div
+                    className={`todo-item ${
+                      todo.is_completed === 1 ? "complete" : ""
+                    }`}
+                    key={todo.id}
+                  >
+                    <p>{todo.todo}</p>
+                    <div className="todo-actions">
+                      <div className="todo-action complete">
+                        <Check onClick={() => handleComplete(todo.id)} />
+                      </div>
+                      <div
+                        className="todo-action delete"
+                        onClick={() => handleDelete(todo.id)}
+                      >
+                        <Trash2 />
+                      </div>
                     </div>
                   </div>
-                </div>
-              ) : null}
-            </>
-          ))}
+                )}
+              </>
+            ))}
+        </div>
+
+        <div className="todos-list">
+          {hasCompletedTodos ? (
+            <h2 className="todos-heading">Completed Todos</h2>
+          ) : null}
+
+          {!isLoading &&
+            data?.map((todo) => (
+              <>
+                {todo.is_completed ? (
+                  <div
+                    className={`todo-item ${
+                      todo.is_completed === 1 ? "complete" : ""
+                    }`}
+                    key={todo.id}
+                  >
+                    <p>{todo.todo}</p>
+                    <div className="todo-actions">
+                      <div className="todo-action complete">
+                        <RotateCcw onClick={() => handleRedo(todo.id)} />
+                      </div>
+                      <div
+                        className="todo-action delete"
+                        onClick={() => handleDelete(todo.id)}
+                      >
+                        <Trash2 />
+                      </div>
+                    </div>
+                  </div>
+                ) : null}
+              </>
+            ))}
+        </div>
       </div>
     </div>
   );
