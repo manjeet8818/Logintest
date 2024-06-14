@@ -17,8 +17,17 @@ app.use(
   "/*",
   cors({
     // origin: ["https://my-app.manjeet88.workers.dev"],
-    // origin: ["https://logintest-1br.pages.dev"],
     origin: "http://localhost:5173",
+
+    allowMethods: ["POST", "GET", "OPTIONS", "DELETE", "PATCH"],
+  })
+);
+
+app.use(
+  "/*",
+  cors({
+    // origin: ["https://my-app.manjeet88.workers.dev"],
+    origin: ["https://logintest-1br.pages.dev"],
 
     allowMethods: ["POST", "GET", "OPTIONS", "DELETE", "PATCH"],
   })
